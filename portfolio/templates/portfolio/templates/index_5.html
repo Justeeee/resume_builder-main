@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- Basic Page Needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Ceevee - Free Responsive HTML5/CSS3 Template</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+   <!-- Mobile Specific Metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+   <link rel="stylesheet" href="{%static 'css/template5/default.css' %}">
+	<link rel="stylesheet" href="{%static 'css/template5/layout.css' %}">
+   <link rel="stylesheet" href="{%static 'css/template5/media-queries.css' %}">
+   <link rel="stylesheet" href="{%static 'css/template5/magnific-popup.css' %}">
+
+   <!-- Script
+   ================================================== -->
+	<script src="{%static 'js/template5/modernizr.js' %}"></script>
+
+   <!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="favicon.png" >
+
+</head>
+
+<body>
+
+   <!-- Header
+   ================================================== -->
+   <header id="home">
+      <div class="row banner">
+         <div class="banner-text">
+            <h1 class="responsive-headline">I'm {{ports.first_name}} {{ports.last_name}} {{ports.other_name}}.</h1>
+            <hr />
+            <ul class="social">
+                  {{ports.email}} || {{ports.phone}}
+            </ul>
+            {% if ports.links %}
+               {{ports.links|safe}}
+            {% endif %}
+         </div>
+      </div>
+
+      <p class="scrolldown">
+         <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
+      </p>
+
+   </header> <!-- Header End -->
+
+
+   <!-- About Section
+   ================================================== -->
+   <section id="about">
+
+      <div class="row">
+
+         <div class="three columns">
+            {% if ports.profile_image %}
+            <img class="profile-pic"  src="{{ports.profile_image.url}}" alt="" />
+            {% endif %}
+         </div>
+
+         <div class="nine columns main-col">
+
+            <h2>About Me</h2>
+
+            <p>{{ports.about|safe}}</p>
+
+            <div class="row">
+               {% if ports.Basic_information %}
+                  <div class="columns contact-details">
+
+                     <h2>Bio</h2>
+                     <div class="address">
+                        {{ports.Basic_information|safe}}
+                     </div>
+
+                  </div>
+               {% endif %}
+            </div> <!-- end row -->
+
+         </div> <!-- end .main-col -->
+
+      </div>
+
+   </section> <!-- About Section End-->
+
+
+   <!-- Resume Section
+   ================================================== -->
+   <section id="resume">
+
+      <!-- Education
+      ----------------------------------------------- -->
+      {% if ports.education %}
+         <div class="row education">
+            <div class="three columns header-col">
+               <h1><span>Education</span></h1>
+            </div>
+
+            <div class="nine columns main-col">
+
+               <div class="row item">
+
+                  <div class="twelve columns">
+                     <div>
+                        {{ports.education|safe}}
+                     </div>
+
+                  </div>
+
+               </div> <!-- item end -->
+
+            </div> <!-- main-col end -->
+
+         </div> <!-- End Education -->
+      {% endif %}
+
+
+      <!-- Work
+      ----------------------------------------------- -->
+      {% if ports.certificate_and_work_experience%}
+         <div class="row work">
+
+            <div class="five columns header-col">
+               <h1><span>Certificate And Work Experience</span></h1>
+            </div>
+
+            <div class="seven columns main-col">
+
+               <div class="row item">
+
+                  <div class="twelve columns">
+                     <div>
+                        {{ports.certificate_and_work_experience|safe}}
+                     </div>
+
+                  </div>
+
+               </div> <!-- item end -->
+
+            </div> <!-- main-col end -->
+
+         </div> <!-- End Work -->
+      {% endif %}
+
+
+      <!-- Skills
+      ----------------------------------------------- -->
+      {% if ports.skills %}
+         <div class="row skill">
+
+            <div class="three columns header-col">
+               <h1><span>Skills</span></h1>
+            </div>
+
+            <div class="nine columns main-col">
+
+               <p> {{ports.skills|safe}}
+               </p>
+            </div> <!-- main-col end -->
+
+         </div> <!-- End skills -->
+      {% endif %}
+
+   </section> <!-- Resume Section End-->
+
+
+   <!-- Portfolio Section
+   ================================================== -->
+   {% if ports.hobbies %}
+      <section id="portfolio">
+
+         <div class="row">
+
+            <div class="twelve columns collapsed">
+
+               <h1>Hobbies</h1>
+
+               <!-- portfolio-wrapper -->
+               <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
+
+                  <div class="columns portfolio-item">
+                     <div>
+                        {{ports.hobbies|safe}}
+
+                     </div>
+                  </div> <!-- item end -->
+
+               </div> <!-- portfolio-wrapper end -->
+
+            </div>  
+         </div>
+      </section>
+   {% endif %}
+   <!-- footer
+   ================================================== -->
+   <footer>
+
+      <div class="row">
+
+         <div class="twelve columns">
+            <div class="container">
+               <a class="btn btn-warning" href="{%url 'update_info' ports.id%}"> update profile</a>
+            </div>
+
+            <ul class="copyright">
+               <li>&copy; Copyright 2014 CeeVee</li>
+               <li>Design by <a href="http://www.styleshout.com/" title="Styleshout" target="_blank">Styleshout</a></li>   
+            </ul>
+
+         </div>
+
+         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+
+      </div>
+
+   </footer> <!-- Footer End-->
+
+   <!-- Java Script
+   ================================================== -->
+   {% comment %} <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="{%static 'js/template5/jquery-1.10.2.min.js' %}"><\/script>')</script>
+   <script type="text/javascript" src="{%static 'js/template5/jquery-migrate-1.2.1.min.js' %}"></script>
+
+   <script src="{%static 'js/template5/jquery.flexslider.js' %}"></script>
+   <script src="{%static 'js/template5/waypoints.js' %}"></script>
+   <script src="{%static 'js/template5/jquery.fittext.js' %}"></script>
+   <script src="{%static 'js/template5/magnific-popup.js' %}"></script>
+   <script src="{%static 'js/template5/init.js' %}"></script> {% endcomment %}
+
+</body>
+
+</html>

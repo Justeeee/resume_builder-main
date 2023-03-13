@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Creative CV</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{%static 'css/templates/aos.css' %}" rel="stylesheet">
+    <link href="{%static 'css/templates/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="summernote-bs5.css" rel="stylesheet">
+    <script src="summernote-bs5.js"></script>
+    <link href="{%static 'css/templates//main.css' %}" rel="stylesheet">
+    <noscript>
+      <style type="text/css">
+        [data-aos] {
+            opacity: 1 !important;
+            transform: translate(0) scale(1) !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  {% if user.portfolio.pk %}
+    <body id="top">
+      <div class="page-content">
+        <div>
+      <div class="profile-page">
+      <div class="wrapper">
+      <div class="page-header page-header-small" filter-color="green">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('images/cc-bg-1.jpg')"></div>
+        <div class="container">
+          <div class="content-center">
+            {%if ports.profile_image %}
+              <div class="cc-profile-image"><img src="{{ports.profile_image.url}}" alt="Image"/></div>
+            {% endif %}
+              <div class="h2 title">{{ports.first_name}} {{ports.last_name}} {{ports.other_name}}</div>
+            <p class="category text-white">{{ports.email}} || {{ports.phone}}</p>
+          </div>
+        </div>
+        <div class="section">
+          <div class="container">
+            <div class="button-container text-white">
+            {%if ports.links%}
+              {{ports.links|safe}} || 
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="about">
+    <div class="container">
+      <div class="card">
+        <div class="row">
+          <div class="col-lg-6 col-md-12">
+            {% if ports.about %}
+              <div class="card-body">
+                <div class="h4 mt-0 title">About</div>
+                <p>{{ports.about|safe}}</p>
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-lg-6 col-md-12">
+            {% if ports.Basic_information%}
+              <div class="card-body">
+                <div class="h4 mt-0 title">Basic Information</div>
+                <div class="row">
+                  <div class="col-sm-10">{{ports.Basic_information|safe}}</div>
+                </div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="skill">
+  </div>
+  <div class="section" id="experience">
+    {% if ports.certificate_and_work_experience%}
+      <div class="container cc-experience">
+        <div class="h4 text-center mb-4 title">Certificate/Work Experience</div>
+        <div class="card">
+          <div class="row">
+            <div class="col-md-9" >
+              <div class="card-body">
+                <div class="h5"></div>
+                {{ports.certificate_and_work_experience|safe}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <div class="section">
+    {% if ports.education %}
+      <div class="container cc-education">
+        <div class="h4 text-center mb-4 title">Education</div>
+        <div class="card">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="card-body">
+                <div class="h5"></div>
+                <p class="category"></p>
+                {{ports.education|safe}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="card">
+        <div class="row">
+          {% if ports.skills %}
+            <div class="col-6">
+              <div class="card-body">
+                <div class="h4 mt-0 title">Skills</div>
+                {{ports.skills|safe}}
+              </div>
+            </div>
+          {% endif %}
+          <div class="col-6">
+            {% if ports.hobbies %}
+              <div class="card-body">
+                <div class="h4 mt-0 title">Hobbies</div>
+                  {{ports.hobbies|safe}}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+      <div class="text-center text-muted">
+      <p>&copy; Creative CV. All rights reserved.<br>Design - <a class="credit" href="https://templateflip.com" target="_blank">TemplateFlip</a></p>
+    </div>
+  </footer>
+  <div class="container">
+    <a class="btn btn-warning" href="{%url 'update_info' ports.id%}"> update profile</a>
+  </div>
+  <script>
+    $('#summernote').summernote({
+      placeholder: 'Hello Bootstrap 5',
+      tabsize: 2,
+      height: 100
+    });
+  </script>
+  </body>
+{% else %}
+  <h1>You don't have a profile yet.. Click here to fill the profile </h1>
+{% endif %}
+  </html>
